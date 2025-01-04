@@ -14,4 +14,4 @@
 4. [Pattern mining course](https://www.youtube.com/playlist?list=PLQWbHaW8RsA1wND30_Re9V5-c8pr1H56H)
 5. [Data mining](https://www.youtube.com/playlist?list=PLbuogVdPnkCrnLNqZPnTuG_s19TNDoad0)
 6. [Data Mining Adam Pareto](https://www.youtube.com/playlist?list=PLqvtGg6xpwt-bTuC88UqtjDOjOSDieI_I)
-7. [CS246 Mining Massive Datasets](https://www.youtube.com/playlist?list=PLoCMsyE1cvdVnCgHk43vRy7PVTVWJ6WVR)
+7. [CS246 Mining Massive Datasets - Jure Lescovec](https://www.youtube.com/playlist?list=PLoCMsyE1cvdVnCgHk43vRy7PVTVWJ6WVR)
