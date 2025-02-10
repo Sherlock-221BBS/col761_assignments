@@ -35,9 +35,6 @@ def convert_to_fsg(input_file, output_file):
                     
 
 def parse_graph_file(filename):
-    """
-    Parses the given .txt_graph file and returns a list of graphs.
-    """
     graphs = []
     label_mapping = {'Br': 0, 'C': 1, 'Cl': 2, 'F': 3, 'H': 4, 'I': 5, 'N': 6, 'O': 7, 'P': 8, 'S': 9, 'Si': 10}
 
@@ -109,9 +106,6 @@ def parse_graph_file(filename):
 
 
 def write_gspan_format(graphs, output_filename):
-    """
-    Writes graphs in gSpan format.
-    """
     with open(output_filename, 'w') as f:
         for graph_id, node_labels, edges in graphs:
             f.write(f't # {graph_id}\n')
@@ -124,9 +118,6 @@ def write_gspan_format(graphs, output_filename):
             
 
 def write_gaston_format(graphs, output_file):
-    """
-    Writes the parsed graphs into Gaston format.
-    """
     with open(output_file, 'w') as f:
         for graph_id, node_labels, edges in graphs:
             f.write(f"t # {graph_id}\n")
