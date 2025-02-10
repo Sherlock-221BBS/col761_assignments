@@ -63,11 +63,10 @@ for support in "${support_list[@]}"; do
     status=$? || true
     end_time=$(date +%s)
     gspan_totaltime=$((end_time - start_time))
-    
-
+    echo "gSpan runtime at $support% support: $gspan_totaltime seconds" >> "$log_path"
     if [ $status -eq 124 ]; then
         echo "gSpan timeout 1hr" | tee -a "$log_path"
-        echo "gSpan runtime at $support% support: $gspan_totaltime seconds" >> "$log_path"
+        > "$fsg_outfile"
     elif [ $status -eq 139 ]; then
         echo "gSpan crashed with segmentation fault (SIGSEGV)" | tee -a "$log_path"
         > "$gspan_outfile"
@@ -78,7 +77,7 @@ for support in "${support_list[@]}"; do
         echo "gSpan was terminated (SIGTERM)" | tee -a "$log_path"
         > "$gspan_outfile"
     else
-        echo "gSpan runtime at $support% support: $gspan_totaltime seconds" >> "$log_path"
+        
         if [ -f "gspan.txt.fp" ]; then
             cp "gspan.txt.fp" "$gspan_outfile"
         fi
@@ -92,10 +91,10 @@ for support in "${support_list[@]}"; do
     end_time=$(date +%s)
     fsg_totaltime=$((end_time - start_time))
     
-
+    echo "FSG runtime at $support% support: $fsg_totaltime seconds" >> "$log_path"
     if [ $status -eq 124 ]; then
         echo "FSG timeout 1hr" | tee -a "$log_path"
-        echo "FSG runtime at $support% support: $fsg_totaltime seconds" >> "$log_path"
+        > "$fsg_outfile"
     elif [ $status -eq 139 ]; then
         echo "FSG crashed with segmentation fault (SIGSEGV)" | tee -a "$log_path"
         > "$fsg_outfile"
@@ -106,7 +105,7 @@ for support in "${support_list[@]}"; do
         echo "FSG was terminated (SIGTERM)" | tee -a "$log_path"
         > "$fsg_outfile"
     else
-        echo "FSG runtime at $support% support: $fsg_totaltime seconds" >> "$log_path"
+        
         if [ -f "fsg.fp" ]; then
             cp "fsg.fp" "$fsg_outfile"
         fi
@@ -122,10 +121,10 @@ for support in "${support_list[@]}"; do
     end_time=$(date +%s)
     gaston_totaltime=$((end_time - start_time))
     
-
+    echo "Gaston runtime at $support% support: $gaston_totaltime seconds" >> "$log_path"
     if [ $status -eq 124 ]; then
         echo "Gaston timeout 1hr" | tee -a "$log_path"
-        echo "Gaston runtime at $support% support: $gaston_totaltime seconds" >> "$log_path"
+        > "$gaston_totaltime"
     elif [ $status -eq 139 ]; then
         echo "Gaston crashed with segmentation fault (SIGSEGV)" | tee -a "$log_path"
         > "$gaston_totaltime"
@@ -135,8 +134,6 @@ for support in "${support_list[@]}"; do
     elif [ $status -eq 143 ]; then
         echo "Gaston was terminated (SIGTERM)" | tee -a "$log_path"
         > "$gaston_totaltime"
-    else
-        echo "Gaston runtime at $support% support: $gaston_totaltime seconds" >> "$log_path"
     fi
 
 done

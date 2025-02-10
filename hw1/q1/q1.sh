@@ -39,10 +39,10 @@ for support in "${threshold_list[@]}"; do
     status=$? || true
     end_time=$(date +%s)
     apriori_time=$((end_time - start_time))
-
+    echo "Apriori runtime at $support% support: $apriori_time seconds" >> "$log_path"
     if [ $status -eq 124 ]; then
         echo "Apriori timeout 1hr" | tee -a "$log_path"
-        echo "Apriori runtime at $support% support: $apriori_time seconds" >> "$log_path"
+        > "$output_file"
     elif [ $status -eq 139 ]; then
         echo "Apriori crashed with segmentation fault (SIGSEGV)" | tee -a "$log_path"
         > "$output_file"
@@ -52,8 +52,6 @@ for support in "${threshold_list[@]}"; do
     elif [ $status -eq 143 ]; then
         echo "Apriori was terminated (SIGTERM)" | tee -a "$log_path"
         > "$output_file"
-    else
-        echo "Apriori runtime at $support% support: $apriori_time seconds" >> "$log_path"
     fi
 
     echo "Running FP-growth for support $support%"
@@ -62,10 +60,10 @@ for support in "${threshold_list[@]}"; do
     status=$? || true
     end_time=$(date +%s)
     fpgrowth_time=$((end_time- start_time))
-
+    echo "FP-growth runtime at $support% support: $fpgrowth_time seconds" >> "$log_path"
     if [ $status -eq 124 ]; then
         echo "FP-growth timeout 1hr" | tee -a "$log_path"
-        echo "FP-growth runtime at $support% support: $fpgrowth_time seconds" >> "$log_path"
+        > "$output_file"
     elif [ $status -eq 139 ]; then
         echo "FP-growth crashed with segmentation fault (SIGSEGV)" | tee -a "$log_path"
         > "$output_file"
@@ -75,8 +73,6 @@ for support in "${threshold_list[@]}"; do
     elif [ $status -eq 143 ]; then
         echo "FP-growth was terminated (SIGTERM)" | tee -a "$log_path"
         > "$output_file"
-    else
-        echo "FP-growth runtime at $support% support: $fpgrowth_time seconds" >> "$log_path"
     fi
 done
 
